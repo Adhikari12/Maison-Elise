@@ -18,7 +18,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(247, 239, 231, 0.92);
+  background: rgba(247, 239, 231, 0.94);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid #ead9cb;
 }
@@ -32,12 +32,12 @@ body {
 
 h1 {
   margin: 0;
-  font-size: 38px;
+  font-size: 40px;
 }
 
 .site-nav a {
   text-decoration: none;
-  margin-left: 24px;
+  margin-left: 26px;
   color: #4c4038;
   font-weight: bold;
 }
@@ -74,18 +74,26 @@ h1 {
 
 .hero-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   margin-top: 30px;
 }
 
-.btn {
-  padding: 14px 24px;
+.btn,
+.link-btn,
+.back-btn {
+  padding: 14px 22px;
   border-radius: 999px;
   text-decoration: none;
   font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 }
 
-.btn-primary {
+.btn-primary,
+.link-btn,
+.back-btn {
   background: #2f2924;
   color: white;
 }
@@ -93,6 +101,7 @@ h1 {
 .btn-secondary {
   border: 1px solid #cdb4a4;
   color: #2f2924;
+  background: transparent;
 }
 
 .hero-card {
@@ -119,23 +128,17 @@ h1 {
 
 .collections,
 .featured,
-.why-us,
-.vibes-section {
+.why-us {
   padding: 70px 0;
 }
 
-.vibes-section {
-  background: #fff8f1;
-}
-
 .section-heading h2 {
-  font-size: 40px;
-  margin-top: 8px;
+  font-size: 42px;
+  margin: 8px 0 0;
 }
 
 .filter-buttons,
 .subcategory-buttons,
-.vibe-buttons,
 .active-filters {
   display: flex;
   flex-wrap: wrap;
@@ -145,7 +148,6 @@ h1 {
 
 .filter-buttons button,
 .subcategory-buttons button,
-.vibe-buttons button,
 .active-filters button {
   border: none;
   background: #ead8c8;
@@ -154,16 +156,15 @@ h1 {
   cursor: pointer;
   font-weight: bold;
   color: #2f2924;
-  transition: 0.3s;
+  transition: 0.25s;
+  font-family: inherit;
 }
 
 .filter-buttons button:hover,
 .subcategory-buttons button:hover,
-.vibe-buttons button:hover,
 .active-filters button:hover,
 .filter-buttons button.active,
-.subcategory-buttons button.active,
-.vibe-buttons button.active {
+.subcategory-buttons button.active {
   background: #2f2924;
   color: #fffaf5;
 }
@@ -198,7 +199,7 @@ h1 {
 
 .product-image {
   width: 100%;
-  height: 240px;
+  height: 235px;
   object-fit: cover;
   background: #ead8c8;
 }
@@ -208,7 +209,7 @@ h1 {
 }
 
 .product-copy h3 {
-  margin-top: 8px;
+  margin: 8px 0 10px;
   font-size: 22px;
 }
 
@@ -216,40 +217,31 @@ h1 {
   line-height: 1.6;
 }
 
-.vibe-tag {
-  display: inline-block;
-  margin: 10px 0;
-  background: #f0dfd1;
-  color: #6b5142;
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: bold;
+.collection-detail {
+  grid-column: 1 / -1;
+  background: #fffaf5;
+  padding: 34px;
+  border-radius: 28px;
+  box-shadow: 0 18px 40px rgba(64, 45, 32, 0.1);
 }
 
-.link-btn {
-  display: inline-block;
-  margin-top: 12px;
-  background: #2f2924;
-  color: white;
-  padding: 12px 18px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: bold;
+.collection-detail h2 {
+  font-size: 38px;
+  margin: 14px 0;
 }
 
 .empty-state {
   grid-column: 1 / -1;
   text-align: center;
   background: #fffaf5;
-  padding: 40px;
+  padding: 45px;
   border-radius: 28px;
 }
 
 .why-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 42px;
 }
 
 .why-list div {
