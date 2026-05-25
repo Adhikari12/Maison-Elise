@@ -23,7 +23,6 @@
 
       <nav class="site-nav">
         <a href="#collections">Collections</a>
-        <a href="#vibes">Vibes</a>
         <a href="#featured">Products</a>
         <a href="#why-us">Why Us</a>
       </nav>
@@ -42,18 +41,18 @@
           </p>
 
           <div class="hero-actions">
-            <a href="#featured" class="btn btn-primary">Explore Collections</a>
-            <a href="#vibes" class="btn btn-secondary">Shop by Vibe</a>
+            <a href="#collections" class="btn btn-primary">Explore Collections</a>
+            <a href="#featured" class="btn btn-secondary">View Products</a>
           </div>
         </div>
 
         <div class="hero-card">
           <div class="hero-card-inner">
             <p class="badge">Maison Moodboard</p>
-            <h3>European calm meets global home styling</h3>
+            <h3>Choose a category, then refine the vibe</h3>
             <p>
-              Filter products by category, subcategory, and aesthetic mood like European,
-              Scandinavian, Indian Folk, Boho, Japandi, Greek Coastal, Luxury, and more.
+              Open Bedding, Furniture, Lighting, Wall Decor, or any category first.
+              Then filter only within that category using subcategories and moods.
             </p>
           </div>
         </div>
@@ -63,34 +62,34 @@
     <section id="collections" class="collections">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Shop by category</p>
-          <h2>Everything your home needs, arranged beautifully</h2>
+          <p class="eyebrow">Step 1</p>
+          <h2>Choose a home category</h2>
         </div>
 
         <div id="categoryButtons" class="filter-buttons"></div>
       </div>
     </section>
 
-    <section id="vibes" class="vibes-section">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Vibe / Mood / Theme</p>
-          <h2>Choose the feeling you want your space to carry</h2>
-        </div>
-
-        <div id="vibeButtons" class="vibe-buttons"></div>
-      </div>
-    </section>
-
     <section id="featured" class="featured">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Curated product edits</p>
-          <h2 id="productHeading">All Maison Élise Collections</h2>
+          <p class="eyebrow">Step 2</p>
+          <h2 id="productHeading">Select a category to begin</h2>
+        </div>
+
+        <div id="insideCategoryFilters" class="inside-category-filters">
+          <div>
+            <h3>Collection Type</h3>
+            <div id="subcategoryButtons" class="subcategory-buttons"></div>
+          </div>
+
+          <div>
+            <h3>Vibe / Mood / Theme</h3>
+            <div id="vibeButtons" class="vibe-buttons"></div>
+          </div>
         </div>
 
         <div id="activeFilters" class="active-filters"></div>
-        <div id="subcategoryButtons" class="subcategory-buttons"></div>
         <div id="productGrid" class="product-grid"></div>
       </div>
     </section>
@@ -105,17 +104,17 @@
         <div class="why-list">
           <div>
             <h3>Category-first shopping</h3>
-            <p>Find everything from bedding and sofas to lamps, wallpapers, vases, rugs, and pooja decor.</p>
+            <p>Choose the room need first, then refine by style, vibe, and collection type.</p>
           </div>
 
           <div>
             <h3>Vibe-based discovery</h3>
-            <p>Shop by European, Scandinavian, Boho, Indian Folk, Greek Coastal, Japandi, Luxury, and more.</p>
+            <p>Shop European, Scandinavian, Indian Folk, Boho, Japandi, Minimal, Luxury, and more.</p>
           </div>
 
           <div>
             <h3>Easy product management</h3>
-            <p>Add, remove, or edit products directly inside products.json without touching the main website.</p>
+            <p>Add, remove, or edit collections directly inside products.json.</p>
           </div>
         </div>
       </div>
