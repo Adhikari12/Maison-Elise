@@ -103,7 +103,7 @@ h1 {
 }
 
 .hero-card-inner {
-  background: rgba(255,255,255,0.45);
+  background: rgba(255, 255, 255, 0.48);
   padding: 32px;
   border-radius: 28px;
 }
@@ -119,8 +119,13 @@ h1 {
 
 .collections,
 .featured,
-.why-us {
+.why-us,
+.vibes-section {
   padding: 70px 0;
+}
+
+.vibes-section {
+  background: #fff8f1;
 }
 
 .section-heading h2 {
@@ -129,7 +134,9 @@ h1 {
 }
 
 .filter-buttons,
-.subcategory-buttons {
+.subcategory-buttons,
+.vibe-buttons,
+.active-filters {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -137,7 +144,9 @@ h1 {
 }
 
 .filter-buttons button,
-.subcategory-buttons button {
+.subcategory-buttons button,
+.vibe-buttons button,
+.active-filters button {
   border: none;
   background: #ead8c8;
   padding: 12px 20px;
@@ -149,8 +158,23 @@ h1 {
 }
 
 .filter-buttons button:hover,
-.subcategory-buttons button:hover {
-  background: #d6b9a5;
+.subcategory-buttons button:hover,
+.vibe-buttons button:hover,
+.active-filters button:hover,
+.filter-buttons button.active,
+.subcategory-buttons button.active,
+.vibe-buttons button.active {
+  background: #2f2924;
+  color: #fffaf5;
+}
+
+.active-filters span {
+  background: #fffaf5;
+  color: #6b5142;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  border: 1px solid #ead8c8;
 }
 
 .product-grid {
@@ -164,7 +188,7 @@ h1 {
   background: #fffaf5;
   border-radius: 28px;
   overflow: hidden;
-  box-shadow: 0 18px 40px rgba(64,45,32,0.12);
+  box-shadow: 0 18px 40px rgba(64, 45, 32, 0.12);
   transition: 0.3s;
 }
 
@@ -176,6 +200,7 @@ h1 {
   width: 100%;
   height: 240px;
   object-fit: cover;
+  background: #ead8c8;
 }
 
 .product-copy {
@@ -191,6 +216,17 @@ h1 {
   line-height: 1.6;
 }
 
+.vibe-tag {
+  display: inline-block;
+  margin: 10px 0;
+  background: #f0dfd1;
+  color: #6b5142;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
 .link-btn {
   display: inline-block;
   margin-top: 12px;
@@ -200,6 +236,14 @@ h1 {
   border-radius: 999px;
   text-decoration: none;
   font-weight: bold;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  background: #fffaf5;
+  padding: 40px;
+  border-radius: 28px;
 }
 
 .why-grid {
