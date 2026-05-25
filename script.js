@@ -21,7 +21,7 @@ async function loadProducts() {
 }
 
 function renderCategoryButtons() {
-  const categories = [...new Set(allProducts.map((p) => p.category))];
+  const categories = [...new Set(allProducts.map((item) => item.category))];
   const categoryBox = document.getElementById("categoryButtons");
 
   categoryBox.innerHTML = categories
@@ -38,6 +38,7 @@ function renderCategoryButtons() {
 function selectCategory(category) {
   selectedCategory = category;
   selectedSubcategory = "All";
+
   renderCategoryButtons();
   renderSubcategoryButtons();
   updateProducts();
@@ -47,13 +48,13 @@ function selectCategory(category) {
 function renderSubcategoryButtons() {
   const box = document.getElementById("subcategoryButtons");
 
-  const productsInCategory = allProducts.filter(
-    (product) => product.category === selectedCategory
+  const categoryCollections = allProducts.filter(
+    (item) => item.category === selectedCategory
   );
 
   const subcategories = [
     "All",
-    ...new Set(productsInCategory.map((product) => product.subcategory)),
+    ...new Set(categoryCollections.map((item) => item.subcategory)),
   ];
 
   box.innerHTML = subcategories
@@ -75,14 +76,10 @@ function selectSubcategory(subcategory) {
 }
 
 function updateProducts() {
-  let filtered = allProducts.filter(
-    (product) => product.category === selectedCategory
-  );
+  let filtered = allProducts.filter((item) => item.category === selectedCategory);
 
   if (selectedSubcategory !== "All") {
-    filtered = filtered.filter(
-      (product) => product.subcategory === selectedSubcategory
-    );
+    filtered = filtered.filter((item) => item.subcategory === selectedSubcategory);
   }
 
   document.getElementById("productHeading").textContent =
@@ -91,25 +88,25 @@ function updateProducts() {
   document.getElementById("activeFilters").innerHTML = `
     <span>Category: ${selectedCategory}</span>
     <span>Collection: ${selectedSubcategory}</span>
-    <button onclick="clearCategoryFilters()">Clear Filters</button>
+    <button onclick="clearFilters()">Clear Filters</button>
   `;
 
   displayCollections(filtered);
 }
 
-function clearCategoryFilters() {
+function clearFilters() {
   selectedSubcategory = "All";
   renderSubcategoryButtons();
   updateProducts();
 }
 
 function showStartMessage() {
-  document.getElementById("activeFilters").innerHTML = "";
   document.getElementById("subcategoryButtons").innerHTML = "";
+  document.getElementById("activeFilters").innerHTML = "";
   document.getElementById("productGrid").innerHTML = `
     <div class="empty-state">
       <h3>Choose a category above</h3>
-      <p>After selecting a category, its collections will appear here.</p>
+      <p>Collections will appear here after selecting a category.</p>
     </div>
   `;
 }
@@ -120,8 +117,8 @@ function displayCollections(collections) {
   if (!collections.length) {
     productGrid.innerHTML = `
       <div class="empty-state">
-        <h3>No matching collections found</h3>
-        <p>Try another collection type.</p>
+        <h3>No collections found</h3>
+        <p>Try another category or collection.</p>
       </div>
     `;
     return;
@@ -133,9 +130,9 @@ function displayCollections(collections) {
     .map(
       (collection, index) => `
       <article class="product-card">
-        <img 
-          src="${collection.image || fallbackImage}" 
-          alt="${collection.name}" 
+        <img
+          src="${collection.image || fallbackImage}"
+          alt="${collection.name}"
           class="product-image"
           loading="lazy"
           onerror="this.onerror=null; this.src='${fallbackImage}';"
@@ -172,11 +169,11 @@ function openCollection(index) {
 
     ${collection.products
       .map(
-        (item) => `
+        (product) => `
         <article class="product-card">
-          <img 
-            src="${item.image || fallbackImage}" 
-            alt="${item.name}" 
+          <img
+            src="${product.image || fallbackImage}"
+            alt="${product.name}"
             class="product-image"
             loading="lazy"
             onerror="this.onerror=null; this.src='${fallbackImage}';"
@@ -184,12 +181,12 @@ function openCollection(index) {
 
           <div class="product-copy">
             <p class="category">Curated Pick</p>
-            <h3>${item.name}</h3>
+            <h3>${product.name}</h3>
 
-            <a 
-              href="${item.link}" 
-              target="_blank" 
-              rel="sponsored noopener noreferrer" 
+            <a
+              href="${product.link}"
+              target="_blank"
+              rel="sponsored noopener noreferrer"
               class="link-btn">
               Shop This Piece
             </a>
