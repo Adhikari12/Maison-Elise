@@ -1,5 +1,5 @@
 let allProducts = [];
-let selectedCategory = "All";
+let selectedCategory = null;
 let selectedSubcategory = "All";
 let selectedVibe = "All";
 
@@ -12,8 +12,7 @@ async function loadProducts() {
     allProducts = await response.json();
 
     renderCategoryButtons();
-    renderVibeButtons();
-    updateProducts();
+    showStartMessage();
   } catch (error) {
     console.error("Products could not be loaded:", error);
     document.getElementById("productGrid").innerHTML =
@@ -22,7 +21,7 @@ async function loadProducts() {
 }
 
 function renderCategoryButtons() {
-  const categories = ["All", ...new Set(allProducts.map((p) => p.category))];
+  const categories = [...new Set(allProducts.map((p) => p.category))];
   const categoryBox = document.getElementById("categoryButtons");
 
   categoryBox.innerHTML = categories
@@ -38,30 +37,20 @@ function renderCategoryButtons() {
     .join("");
 }
 
-function renderVibeButtons() {
-  const vibes = ["All", ...new Set(allProducts.map((p) => p.vibe))];
-  const vibeBox = document.getElementById("vibeButtons");
+function selectCategory(category) {
+  selectedCategory = category;
+  selectedSubcategory = "All";
+  selectedVibe = "All";
 
-  vibeBox.innerHTML = vibes
-    .map(
-      (vibe) => `
-      <button 
-        class="${selectedVibe === vibe ? "active" : ""}" 
-        onclick="selectVibe('${vibe}')">
-        ${vibe}
-      </button>
-    `
-    )
-    .join("");
+  renderCategoryButtons();
+  renderInsideCategoryFilters();
+  updateProducts();
+  scrollToProducts();
 }
 
-function renderSubcategoryButtons() {
+function renderInsideCategoryFilters() {
   const subcategoryBox = document.getElementById("subcategoryButtons");
-
-  if (selectedCategory === "All") {
-    subcategoryBox.innerHTML = "";
-    return;
-  }
+  const vibeBox = document.getElementById("vibeButtons");
 
   const productsInCategory = allProducts.filter(
     (product) => product.category === selectedCategory
@@ -72,53 +61,54 @@ function renderSubcategoryButtons() {
     ...new Set(productsInCategory.map((product) => product.subcategory)),
   ];
 
+  const vibes = [
+    "All",
+    ...new Set(productsInCategory.map((product) => product.vibe)),
+  ];
+
   subcategoryBox.innerHTML = subcategories
     .map(
       (sub) => `
       <button 
         class="${selectedSubcategory === sub ? "active" : ""}" 
         onclick="selectSubcategory('${sub}')">
-        ${sub === "All" ? "All " + selectedCategory : sub}
+        ${sub === "All" ? "All Collections" : sub}
+      </button>
+    `
+    )
+    .join("");
+
+  vibeBox.innerHTML = vibes
+    .map(
+      (vibe) => `
+      <button 
+        class="${selectedVibe === vibe ? "active" : ""}" 
+        onclick="selectVibe('${vibe}')">
+        ${vibe === "All" ? "All Vibes" : vibe}
       </button>
     `
     )
     .join("");
 }
 
-function selectCategory(category) {
-  selectedCategory = category;
-  selectedSubcategory = "All";
-
-  renderCategoryButtons();
-  renderSubcategoryButtons();
-  updateProducts();
-  scrollToProducts();
-}
-
 function selectSubcategory(subcategory) {
   selectedSubcategory = subcategory;
-
-  renderSubcategoryButtons();
+  renderInsideCategoryFilters();
   updateProducts();
   scrollToProducts();
 }
 
 function selectVibe(vibe) {
   selectedVibe = vibe;
-
-  renderVibeButtons();
+  renderInsideCategoryFilters();
   updateProducts();
   scrollToProducts();
 }
 
 function updateProducts() {
-  let filteredProducts = [...allProducts];
-
-  if (selectedCategory !== "All") {
-    filteredProducts = filteredProducts.filter(
-      (product) => product.category === selectedCategory
-    );
-  }
+  let filteredProducts = allProducts.filter(
+    (product) => product.category === selectedCategory
+  );
 
   if (selectedSubcategory !== "All") {
     filteredProducts = filteredProducts.filter(
@@ -134,84 +124,147 @@ function updateProducts() {
 
   updateHeading();
   updateActiveFilters();
-  displayProducts(filteredProducts);
+  displayCollections(filteredProducts);
 }
 
 function updateHeading() {
   const heading = document.getElementById("productHeading");
 
-  if (selectedCategory === "All" && selectedVibe === "All") {
-    heading.textContent = "All Maison Élise Collections";
-  } else {
-    heading.textContent = "Your Curated Maison Élise Edit";
+  if (!selectedCategory) {
+    heading.textContent = "Select a category to begin";
+    return;
   }
+
+  heading.textContent = `${selectedCategory} Collections`;
 }
 
 function updateActiveFilters() {
   const activeFilters = document.getElementById("activeFilters");
 
+  if (!selectedCategory) {
+    activeFilters.innerHTML = "";
+    return;
+  }
+
   activeFilters.innerHTML = `
     <span>Category: ${selectedCategory}</span>
-    <span>Subcategory: ${selectedSubcategory}</span>
+    <span>Collection: ${selectedSubcategory}</span>
     <span>Vibe: ${selectedVibe}</span>
-    <button onclick="resetFilters()">Reset Filters</button>
+    <button onclick="clearCategoryFilters()">Clear Filters</button>
   `;
 }
 
-function resetFilters() {
-  selectedCategory = "All";
+function clearCategoryFilters() {
   selectedSubcategory = "All";
   selectedVibe = "All";
 
-  renderCategoryButtons();
-  renderVibeButtons();
-  renderSubcategoryButtons();
+  renderInsideCategoryFilters();
   updateProducts();
 }
 
-function displayProducts(products) {
+function showStartMessage() {
+  document.getElementById("insideCategoryFilters").style.display = "none";
+  document.getElementById("activeFilters").innerHTML = "";
+  document.getElementById("productGrid").innerHTML = `
+    <div class="empty-state">
+      <h3>Choose a category above</h3>
+      <p>After selecting a category, collection and vibe filters will appear here.</p>
+    </div>
+  `;
+}
+
+function displayCollections(collections) {
+  document.getElementById("insideCategoryFilters").style.display = "grid";
+
   const productGrid = document.getElementById("productGrid");
 
-  if (!products.length) {
+  if (!collections.length) {
     productGrid.innerHTML = `
       <div class="empty-state">
-        <h3>No matching pieces found</h3>
-        <p>Try changing the category, subcategory, or vibe filter.</p>
+        <h3>No matching collections found</h3>
+        <p>Try changing the collection type or vibe filter.</p>
       </div>
     `;
     return;
   }
 
-  productGrid.innerHTML = products
+  productGrid.innerHTML = collections
     .map(
-      (product) => `
+      (collection, index) => `
       <article class="product-card">
         <img 
-          src="${product.image && product.image.trim() !== "" ? product.image : fallbackImage}" 
-          alt="${product.name}" 
+          src="${collection.image && collection.image.trim() !== "" ? collection.image : fallbackImage}" 
+          alt="${collection.name}" 
           class="product-image"
           loading="lazy"
           onerror="this.onerror=null; this.src='${fallbackImage}';"
         />
 
         <div class="product-copy">
-          <p class="category">Maison Élise • ${product.subcategory}</p>
-          <h3>${product.name}</h3>
-          <p>${product.description}</p>
-          <span class="vibe-tag">${product.vibe}</span>
+          <p class="category">Maison Élise • ${collection.subcategory}</p>
+          <h3>${collection.name}</h3>
+          <p>${collection.description}</p>
+          <span class="vibe-tag">${collection.vibe}</span>
 
-          <a 
-            href="${product.link}" 
-            target="_blank" 
-            rel="sponsored noopener noreferrer" 
-            class="link-btn">
+          <button 
+            class="link-btn"
+            onclick="openCollection(${index})">
             View Collection
-          </a>
+          </button>
         </div>
       </article>
     `
     )
     .join("");
+
+  window.currentVisibleCollections = collections;
+}
+
+function openCollection(index) {
+  const collection = window.currentVisibleCollections[index];
+  const productGrid = document.getElementById("productGrid");
+
+  document.getElementById("productHeading").textContent = collection.name;
+
+  productGrid.innerHTML = `
+    <div class="collection-detail">
+      <button class="back-btn" onclick="updateProducts()">← Back to ${selectedCategory}</button>
+      <p class="eyebrow">${collection.category} • ${collection.vibe}</p>
+      <h2>${collection.name}</h2>
+      <p>${collection.description}</p>
+    </div>
+
+    ${collection.products
+      .map(
+        (item) => `
+        <article class="product-card">
+          <img 
+            src="${item.image && item.image.trim() !== "" ? item.image : fallbackImage}" 
+            alt="${item.name}" 
+            class="product-image"
+            loading="lazy"
+            onerror="this.onerror=null; this.src='${fallbackImage}';"
+          />
+
+          <div class="product-copy">
+            <p class="category">Curated Pick</p>
+            <h3>${item.name}</h3>
+
+            <a 
+              href="${item.link}" 
+              target="_blank" 
+              rel="sponsored noopener noreferrer" 
+              class="link-btn">
+              Shop This Piece
+            </a>
+          </div>
+        </article>
+      `
+      )
+      .join("")}
+  `;
+
+  scrollToProducts();
 }
 
 function scrollToProducts() {
