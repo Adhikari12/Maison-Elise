@@ -1,207 +1,257 @@
 let allProducts = [];
 let selectedCategory = null;
 let selectedSubcategory = "All";
-window.currentVisibleCollections = [];
+let currentVisibleCollections = [];
 
 const fallbackImage =
-  "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=80";
+"https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=80";
 
 async function loadProducts() {
-  try {
-    const response = await fetch("products.json");
-    allProducts = await response.json();
+try {
+const response = await fetch("products.json");
 
-    renderCategoryButtons();
-    showStartMessage();
-  } catch (error) {
-    console.error("Products could not be loaded:", error);
-    document.getElementById("productGrid").innerHTML =
-      "<p>Products are being updated. Please check again soon.</p>";
-  }
+```
+if (!response.ok) {
+  throw new Error("Failed to load products");
+}
+
+allProducts = await response.json();
+
+renderCategoryButtons();
+showStartMessage();
+```
+
+} catch (error) {
+console.error(error);
+
+```
+document.getElementById("productGrid").innerHTML = `
+  <div class="empty-state">
+    <h3>Collections are currently unavailable</h3>
+    <p>Please try again later.</p>
+  </div>
+`;
+```
+
+}
 }
 
 function renderCategoryButtons() {
-  const categories = [...new Set(allProducts.map((item) => item.category))];
-  const categoryBox = document.getElementById("categoryButtons");
+const categories = [...new Set(allProducts.map(item => item.category))];
 
-  categoryBox.innerHTML = categories
-    .map(
-      (category) => `
-      <button class="${selectedCategory === category ? "active" : ""}" onclick="selectCategory('${category}')">
-        ${category}
-      </button>
-    `
-    )
-    .join("");
+document.getElementById("categoryButtons").innerHTML = categories
+.map(category => `       <button
+        class="${selectedCategory === category ? "active" : ""}"
+        onclick="selectCategory('${category}')">
+        ${category}       </button>
+    `)
+.join("");
 }
 
 function selectCategory(category) {
-  selectedCategory = category;
-  selectedSubcategory = "All";
+selectedCategory = category;
+selectedSubcategory = "All";
 
-  renderCategoryButtons();
-  renderSubcategoryButtons();
-  updateProducts();
-  scrollToProducts();
+renderCategoryButtons();
+renderSubcategoryButtons();
+updateProducts();
+
+setTimeout(scrollToProducts, 150);
 }
 
 function renderSubcategoryButtons() {
-  const box = document.getElementById("subcategoryButtons");
+const collections = allProducts.filter(
+item => item.category === selectedCategory
+);
 
-  const categoryCollections = allProducts.filter(
-    (item) => item.category === selectedCategory
-  );
+const subcategories = [
+"All",
+...new Set(collections.map(item => item.subcategory))
+];
 
-  const subcategories = [
-    "All",
-    ...new Set(categoryCollections.map((item) => item.subcategory)),
-  ];
-
-  box.innerHTML = subcategories
-    .map(
-      (sub) => `
-      <button class="${selectedSubcategory === sub ? "active" : ""}" onclick="selectSubcategory('${sub}')">
-        ${sub === "All" ? "All Collections" : sub}
-      </button>
-    `
-    )
-    .join("");
+document.getElementById("subcategoryButtons").innerHTML = subcategories
+.map(sub => `       <button
+        class="${selectedSubcategory === sub ? "active" : ""}"
+        onclick="selectSubcategory('${sub}')">
+        ${sub === "All" ? "All Collections" : sub}       </button>
+    `)
+.join("");
 }
 
 function selectSubcategory(subcategory) {
-  selectedSubcategory = subcategory;
-  renderSubcategoryButtons();
-  updateProducts();
-  scrollToProducts();
+selectedSubcategory = subcategory;
+
+renderSubcategoryButtons();
+updateProducts();
 }
 
 function updateProducts() {
-  let filtered = allProducts.filter((item) => item.category === selectedCategory);
+let filtered = allProducts.filter(
+item => item.category === selectedCategory
+);
 
-  if (selectedSubcategory !== "All") {
-    filtered = filtered.filter((item) => item.subcategory === selectedSubcategory);
-  }
+if (selectedSubcategory !== "All") {
+filtered = filtered.filter(
+item => item.subcategory === selectedSubcategory
+);
+}
 
-  document.getElementById("productHeading").textContent =
-    `${selectedCategory} Collections`;
+document.getElementById("productHeading").textContent =
+selectedSubcategory === "All"
+? `${selectedCategory}`
+: selectedSubcategory;
 
-  document.getElementById("activeFilters").innerHTML = `
-    <span>Category: ${selectedCategory}</span>
-    <span>Collection: ${selectedSubcategory}</span>
-    <button onclick="clearFilters()">Clear Filters</button>
-  `;
+document.getElementById("activeFilters").innerHTML =
+selectedSubcategory === "All"
+? `       <span>${selectedCategory}</span>
+    `
+: `       <span>${selectedCategory}</span>       <span>${selectedSubcategory}</span>       <button onclick="clearFilters()">Clear</button>
+    `;
 
-  displayCollections(filtered);
+displayCollections(filtered);
 }
 
 function clearFilters() {
-  selectedSubcategory = "All";
-  renderSubcategoryButtons();
-  updateProducts();
+selectedSubcategory = "All";
+
+renderSubcategoryButtons();
+updateProducts();
 }
 
 function showStartMessage() {
-  document.getElementById("subcategoryButtons").innerHTML = "";
-  document.getElementById("activeFilters").innerHTML = "";
-  document.getElementById("productGrid").innerHTML = `
-    <div class="empty-state">
-      <h3>Choose a category above</h3>
-      <p>Collections will appear here after selecting a category.</p>
-    </div>
+document.getElementById("subcategoryButtons").innerHTML = "";
+document.getElementById("activeFilters").innerHTML = "";
+
+document.getElementById("productGrid").innerHTML = `     <div class="empty-state">       <h3>Explore Maison Élise Collections</h3>       <p>Select a category above to browse curated collections.</p>     </div>
   `;
 }
 
 function displayCollections(collections) {
-  const productGrid = document.getElementById("productGrid");
+const grid = document.getElementById("productGrid");
 
-  if (!collections.length) {
-    productGrid.innerHTML = `
-      <div class="empty-state">
-        <h3>No collections found</h3>
-        <p>Try another category or collection.</p>
-      </div>
+if (!collections.length) {
+grid.innerHTML = `       <div class="empty-state">         <h3>No collections found</h3>         <p>Please try another collection.</p>       </div>
     `;
-    return;
-  }
+return;
+}
 
-  window.currentVisibleCollections = collections;
+currentVisibleCollections = collections;
 
-  productGrid.innerHTML = collections
-    .map(
-      (collection, index) => `
-      <article class="product-card">
-        <img
-          src="${collection.image || fallbackImage}"
-          alt="${collection.name}"
-          class="product-image"
-          loading="lazy"
-          onerror="this.onerror=null; this.src='${fallbackImage}';"
-        />
+grid.innerHTML = collections
+.map((collection, index) => ` <article class="product-card">
 
-        <div class="product-copy">
-          <p class="category">Maison Élise • ${collection.subcategory}</p>
-          <h3>${collection.name}</h3>
-          <p>${collection.description}</p>
+```
+    <img
+      src="${collection.image || fallbackImage}"
+      alt="${collection.name}"
+      class="product-image"
+      loading="lazy"
+      onerror="this.src='${fallbackImage}'"
+    >
 
-          <button class="link-btn" onclick="openCollection(${index})">
-            View Collection
-          </button>
-        </div>
-      </article>
-    `
-    )
-    .join("");
+    <div class="product-copy">
+
+      <p class="category">
+        Maison Élise • ${collection.subcategory}
+      </p>
+
+      <h3>${collection.name}</h3>
+
+      <p>${collection.description}</p>
+
+      <button
+        class="link-btn"
+        onclick="openCollection(${index})">
+        View Collection
+      </button>
+
+    </div>
+
+  </article>
+`)
+.join("");
+```
+
 }
 
 function openCollection(index) {
-  const collection = window.currentVisibleCollections[index];
-  const productGrid = document.getElementById("productGrid");
+const collection = currentVisibleCollections[index];
 
-  document.getElementById("productHeading").textContent = collection.name;
+document.getElementById("productHeading").textContent =
+collection.name;
 
-  productGrid.innerHTML = `
-    <div class="collection-detail">
-      <button class="back-btn" onclick="updateProducts()">← Back to ${selectedCategory}</button>
-      <p class="eyebrow">${collection.category} • ${collection.subcategory}</p>
-      <h2>${collection.name}</h2>
-      <p>${collection.description}</p>
-    </div>
+document.getElementById("productGrid").innerHTML = `
 
-    ${collection.products
-      .map(
-        (product) => `
-        <article class="product-card">
-          <img
-            src="${product.image || fallbackImage}"
-            alt="${product.name}"
-            class="product-image"
-            loading="lazy"
-            onerror="this.onerror=null; this.src='${fallbackImage}';"
-          />
+```
+<div class="collection-detail">
 
-          <div class="product-copy">
-            <p class="category">Curated Pick</p>
-            <h3>${product.name}</h3>
+  <button
+    class="back-btn"
+    onclick="updateProducts()">
+    ← Back to Collections
+  </button>
 
-            <a
-              href="${product.link}"
-              target="_blank"
-              rel="sponsored noopener noreferrer"
-              class="link-btn">
-              Shop This Piece
-            </a>
-          </div>
-        </article>
-      `
-      )
-      .join("")}
-  `;
+  <p class="eyebrow">
+    ${collection.category}
+  </p>
 
-  scrollToProducts();
+  <h2>${collection.name}</h2>
+
+  <p>${collection.description}</p>
+
+</div>
+
+${collection.products
+  .map(product => `
+    <article class="product-card">
+
+      <img
+        src="${product.image || fallbackImage}"
+        alt="${product.name}"
+        class="product-image"
+        loading="lazy"
+        onerror="this.src='${fallbackImage}'"
+      >
+
+      <div class="product-copy">
+
+        <p class="category">
+          Curated Pick
+        </p>
+
+        <h3>${product.name}</h3>
+
+        <a
+          href="${product.link}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link-btn">
+
+          Shop This Piece
+
+        </a>
+
+      </div>
+
+    </article>
+  `)
+  .join("")}
+```
+
+`;
+
+scrollToProducts();
 }
 
 function scrollToProducts() {
-  document.getElementById("featured").scrollIntoView({ behavior: "smooth" });
+document
+.getElementById("featured")
+.scrollIntoView({
+behavior: "smooth",
+block: "start"
+});
 }
+
+document.addEventListener("DOMContentLoaded", loadProducts);
 
 loadProducts();
