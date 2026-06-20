@@ -10,25 +10,33 @@ async function loadProducts() {
     displayProducts(allProducts);
   } catch (error) {
     console.error("Products could not be loaded:", error);
+    document.getElementById("productGrid").innerHTML =
+      "<p>Products are being updated. Please check again soon.</p>";
   }
 }
 
 function displayProducts(products) {
   const productGrid = document.getElementById("productGrid");
 
+  if (!products.length) {
+    productGrid.innerHTML = "<p>No products found in this collection.</p>";
+    return;
+  }
+
   productGrid.innerHTML = products
     .map(
       (product) => `
       <article class="product-card">
         <img 
-          src="${product.image || fallbackImage}" 
+          src="${product.image && product.image.trim() !== "" ? product.image : fallbackImage}" 
           alt="${product.name}" 
           class="product-image"
+          loading="lazy"
           onerror="this.onerror=null; this.src='${fallbackImage}';"
         />
 
         <div class="product-copy">
-          <p class="category">${product.category} • ${product.subcategory}</p>
+          <p class="category">Maison Élise • ${product.subcategory}</p>
           <h3>${product.name}</h3>
           <p>${product.description}</p>
 
@@ -37,7 +45,7 @@ function displayProducts(products) {
             target="_blank" 
             rel="sponsored noopener noreferrer" 
             class="link-btn">
-            View on Amazon
+            View Collection
           </a>
         </div>
       </article>
@@ -89,7 +97,5 @@ function filterSubcategory(category, subcategory) {
 
   displayProducts(filtered);
 }
-
-loadProducts();
 
 loadProducts();
