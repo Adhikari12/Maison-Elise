@@ -1,9 +1,16 @@
 let allProducts = [];
 
+const fallbackImage =
+  "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=80";
+
 async function loadProducts() {
-  const response = await fetch("products.json");
-  allProducts = await response.json();
-  displayProducts(allProducts);
+  try {
+    const response = await fetch("products.json");
+    allProducts = await response.json();
+    displayProducts(allProducts);
+  } catch (error) {
+    console.error("Products could not be loaded:", error);
+  }
 }
 
 function displayProducts(products) {
@@ -13,10 +20,15 @@ function displayProducts(products) {
     .map(
       (product) => `
       <article class="product-card">
-        <img src="${product.image}" alt="${product.name}" class="product-image" />
+        <img 
+          src="${product.image || fallbackImage}" 
+          alt="${product.name}" 
+          class="product-image"
+          onerror="this.onerror=null; this.src='${fallbackImage}';"
+        />
 
         <div class="product-copy">
-          <p class="category">${product.category}</p>
+          <p class="category">${product.category} • ${product.subcategory}</p>
           <h3>${product.name}</h3>
           <p>${product.description}</p>
 
@@ -35,14 +47,49 @@ function displayProducts(products) {
 }
 
 function filterProducts(category) {
+  const subcategoryBox = document.getElementById("subcategoryButtons");
+
   if (category === "All") {
+    subcategoryBox.innerHTML = "";
     displayProducts(allProducts);
-  } else {
-    const filtered = allProducts.filter(
-      (product) => product.category === category
-    );
-    displayProducts(filtered);
+    return;
   }
+
+  const categoryProducts = allProducts.filter(
+    (product) => product.category === category
+  );
+
+  const subcategories = [
+    ...new Set(categoryProducts.map((product) => product.subcategory)),
+  ];
+
+  subcategoryBox.innerHTML = `
+    <button onclick="displayProducts(allProducts.filter(product => product.category === '${category}'))">
+      All ${category}
+    </button>
+    ${subcategories
+      .map(
+        (sub) => `
+        <button onclick="filterSubcategory('${category}', '${sub}')">
+          ${sub}
+        </button>
+      `
+      )
+      .join("")}
+  `;
+
+  displayProducts(categoryProducts);
 }
+
+function filterSubcategory(category, subcategory) {
+  const filtered = allProducts.filter(
+    (product) =>
+      product.category === category && product.subcategory === subcategory
+  );
+
+  displayProducts(filtered);
+}
+
+loadProducts();
 
 loadProducts();
