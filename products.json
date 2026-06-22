@@ -1,7 +1,7 @@
 [
   {
     "name": "Pastel Cotton Bedsheet Set",
-    "category": "Bedding",
+    "category": "Beddings",
     "subcategory": "Pastel Bedsheets",
     "description": "Soft pastel bedsheets for calm and aesthetic bedrooms.",
     "image": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=900&q=80",
@@ -9,7 +9,7 @@
   },
   {
     "name": "Minimal Solid Bedsheet",
-    "category": "Bedding",
+    "category": "Beddings",
     "subcategory": "Solid Bedsheets",
     "description": "Elegant solid-tone bedding for modern European interiors.",
     "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80",
@@ -17,7 +17,7 @@
   },
   {
     "name": "Luxury Floral Bedding",
-    "category": "Bedding",
+    "category": "Beddings",
     "subcategory": "Floral Bedsheets",
     "description": "Romantic floral bedding with feminine European charm.",
     "image": "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=900&q=80",
@@ -25,7 +25,7 @@
   },
   {
     "name": "Cloud Comfort Mattress",
-    "category": "Bedding",
+    "category": "Matresses",
     "subcategory": "Mattresses",
     "description": "Comfortable mattress for soft and restful sleep.",
     "image": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=900&q=80",
@@ -49,7 +49,7 @@
   },
   {
     "name": "Neutral Area Rug",
-    "category": "Curtains & Rugs",
+    "category": "Floor Rugs",
     "subcategory": "Area Rugs",
     "description": "Soft textured rugs for cozy bedroom and living spaces.",
     "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80",
@@ -57,7 +57,7 @@
   },
   {
     "name": "Warm Glow Table Lamp",
-    "category": "Lighting",
+    "category": "Lamps",
     "subcategory": "Table Lamps",
     "description": "Warm ambient lighting for soft luxury homes.",
     "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=80",
@@ -65,7 +65,7 @@
   },
   {
     "name": "Modern Floor Lamp",
-    "category": "Lighting",
+    "category": "Lamps",
     "subcategory": "Floor Lamps",
     "description": "Elegant standing lamp for sophisticated interiors.",
     "image": "https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=900&q=80",
@@ -73,7 +73,7 @@
   },
   {
     "name": "Fairy String Lights",
-    "category": "Lighting",
+    "category": "String Lights",
     "subcategory": "Fairy Lights",
     "description": "Pinterest-style cozy lighting for bedrooms and balconies.",
     "image": "https://images.unsplash.com/photo-1517991104123-1d56a6e81ed9?auto=format&fit=crop&w=900&q=80",
@@ -81,7 +81,7 @@
   },
   {
     "name": "Minimal Ceramic Vase",
-    "category": "Table Decor",
+    "category": "Vase Collections",
     "subcategory": "Vases",
     "description": "Timeless vase for modern neutral interiors.",
     "image": "https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=900&q=80",
@@ -89,7 +89,7 @@
   },
   {
     "name": "Luxury Candle Set",
-    "category": "Table Decor",
+    "category": "Vase Collections",
     "subcategory": "Candles",
     "description": "Elegant scented candles for cozy soft-luxury rooms.",
     "image": "https://images.unsplash.com/photo-1602872029708-84d970d3389a?auto=format&fit=crop&w=900&q=80",
@@ -97,7 +97,7 @@
   },
   {
     "name": "Decorative Wall Mirror",
-    "category": "Wall Decor",
+    "category": "Mirrors",
     "subcategory": "Mirrors",
     "description": "Aesthetic wall mirror that brightens interiors beautifully.",
     "image": "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=80",
@@ -105,7 +105,7 @@
   },
   {
     "name": "Peel & Stick Wallpaper",
-    "category": "Wall Decor",
+    "category": "Wallpapers",
     "subcategory": "Wallpapers",
     "description": "Easy wallpaper upgrades for elegant interiors.",
     "image": "https://images.unsplash.com/photo-1615529162924-f8605388461d?auto=format&fit=crop&w=900&q=80",
@@ -113,7 +113,7 @@
   },
   {
     "name": "Elegant Wall Art Set",
-    "category": "Wall Decor",
+    "category": "Wall Arts",
     "subcategory": "Wall Art",
     "description": "Soft neutral artwork for Pinterest-worthy walls.",
     "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=80",
@@ -121,7 +121,7 @@
   },
   {
     "name": "Luxury Sofa Set",
-    "category": "Furniture",
+    "category": "Sofa Sets",
     "subcategory": "Sofas",
     "description": "Comfortable sofa set for refined living rooms.",
     "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=80",
@@ -129,7 +129,7 @@
   },
   {
     "name": "Modern Coffee Table",
-    "category": "Furniture",
+    "category": "Coffee Tables",
     "subcategory": "Coffee Tables",
     "description": "Elegant centerpiece for aesthetic living rooms.",
     "image": "https://images.unsplash.com/photo-1532372320572-cda25653a694?auto=format&fit=crop&w=900&q=80",
@@ -137,7 +137,7 @@
   },
   {
     "name": "Accent Lounge Chair",
-    "category": "Furniture",
+    "category": "Lounge Chairs",
     "subcategory": "Accent Chairs",
     "description": "Beautiful statement chair for cozy corners.",
     "image": "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=900&q=80",
