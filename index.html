@@ -8,6 +8,12 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="compliance-banner">
+    <div class="container">
+      <p>As an Amazon Associate, Maison Élise earns from qualifying purchases at no extra cost to you.</p>
+    </div>
+  </div>
+
   <header class="site-header">
     <div class="container nav-bar">
       <div>
@@ -15,8 +21,7 @@
         <h1>Maison Élise</h1>
       </div>
       <nav class="site-nav">
-        <a href="#collections">Collections</a>
-        <a href="#featured">Products</a>
+        <a href="#" onclick="showMainCategories(event)">Collections</a>
         <a href="#why-us">Why Us</a>
       </nav>
     </div>
@@ -33,8 +38,7 @@
             and timeless decor pieces that make every corner feel romantic and refined.
           </p>
           <div class="hero-actions">
-            <a href="#featured" class="btn btn-primary">Explore products</a>
-            <a href="#collections" class="btn btn-secondary">Browse collections</a>
+            <a href="#" onclick="scrollToCollections(event)" class="btn btn-primary">Explore collections</a>
           </div>
         </div>
         <div class="hero-card">
@@ -53,37 +57,30 @@
     <section id="collections" class="collections">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Curated collections</p>
-          <h2>Shop by aesthetic room essentials</h2>
-        </div>
-        
-        <div class="filter-buttons">
-          <button onclick="filterProducts('All')">All</button>
-          <button onclick="filterProducts('Furniture')">Furniture</button>
-          <button onclick="filterProducts('Bedding')">Bedding</button>
-          <button onclick="filterProducts('Lighting')">Lighting</button>
-          <button onclick="filterProducts('Wall Decor')">Wall Decor</button>
-          <button onclick="filterProducts('Curtains & Rugs')">Curtains & Rugs</button>
-          <button onclick="filterProducts('Table Decor')">Table Decor</button>
-          <button onclick="filterProducts('Spiritual Decor')">Spiritual Decor</button>
-          <button onclick="filterProducts('Storage & Organizers')">Storage & Organizers</button>
-          <button onclick="filterProducts('Kitchen Decor')">Kitchen Decor</button>
-          <button onclick="filterProducts('Bathroom Decor')">Bathroom Decor</button>
-          <button onclick="filterProducts('Outdoor Decor')">Outdoor Decor</button>
+          <p class="eyebrow" id="browsingEyebrow">Curated collections</p>
+          <h2 id="browsingTitle">Shop by aesthetic room essentials</h2>
         </div>
 
+        <div id="backNavContainer" class="back-nav-container" style="display: none;">
+          <button onclick="showMainCategories()" class="back-btn">← Back to All Collections</button>
+        </div>
+
+        <div id="storeControls" class="store-controls" style="display: none;">
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search within this category..." oninput="handleSearchAndSort()" />
+          </div>
+          <div class="sort-box">
+            <select id="sortSelect" onchange="handleSearchAndSort()">
+              <option value="featured">Featured Picks</option>
+              <option value="az">Alphabetical: A-Z</option>
+              <option value="za">Alphabetical: Z-A</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="categoryGrid" class="category-showcase-grid"></div>
         <div id="subcategoryButtons" class="subcategory-buttons"></div>
-
-      </div>
-    </section>
-
-    <section id="featured" class="featured">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Featured favourites</p>
-          <h2>Amazon finds curated for soft luxury homes</h2>
-        </div>
-        <div id="productGrid" class="product-grid"></div>
+        <div id="productGrid" class="product-grid" style="display: none;"></div>
       </div>
     </section>
 
