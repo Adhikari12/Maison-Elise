@@ -1,280 +1,186 @@
-```javascript
 let allProducts = [];
-let selectedCategory = null;
-let selectedSubcategory = null;
-let currentCollections = [];
+let currentCategory = "";
+let currentSubcategory = "All";
 
-const fallbackImage =
-  "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=80";
+// Strict Category Configuration holding semantic covers mapping directly to dataset links
+const mainCategories = [
+  { name: "Beddings", image: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=500&q=80" },
+  { name: "Coffee Tables", image: "https://images.unsplash.com/photo-1532372320572-cda25653a694?auto=format&fit=crop&w=500&q=80" },
+  { name: "Lamps", image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=500&q=80" },
+  { name: "Matresses", image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=500&q=80" },
+  { name: "Floor Rugs", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=500&q=80" },
+  { name: "Sofa Sets", image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=500&q=80" },
+  { name: "Vase Collections", image: "https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=500&q=80" },
+  { name: "String Lights", image: "https://images.unsplash.com/photo-1517991104123-1d56a6e81ed9?auto=format&fit=crop&w=500&q=80" },
+  { name: "Wallpapers", image: "https://images.unsplash.com/photo-1615529162924-f8605388461d?auto=format&fit=crop&w=500&q=80" },
+  { name: "Mirrors", image: "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=500&q=80" },
+  { name: "Wall Arts", image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80" },
+  { name: "Lounge Chairs", image: "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=500&q=80" },
+  { name: "Spiritual Decor", image: "https://images.unsplash.com/photo-1601212660297-70f8e0a728dd?auto=format&fit=crop&w=500&q=80" }
+];
+
+const fallbackImage = "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=80";
 
 async function loadProducts() {
   try {
     const response = await fetch("products.json");
     allProducts = await response.json();
-
-    renderCategories();
+    showMainCategories();
   } catch (error) {
-    console.error(error);
-
-    document.getElementById("productGrid").innerHTML =
-      "<p>Collections are currently unavailable.</p>";
+    console.error("Products could not be loaded:", error);
+    document.getElementById("categoryGrid").innerHTML = "<p>Store update in progress. Please return shortly.</p>";
   }
 }
 
-function renderCategories() {
+function showMainCategories(e) {
+  if(e) e.preventDefault();
+  currentCategory = "";
+  currentSubcategory = "All";
+
+  // Reset inputs and visibility
+  document.getElementById("searchInput").value = "";
+  document.getElementById("sortSelect").value = "featured";
+  document.getElementById("backNavContainer").style.display = "none";
+  document.getElementById("storeControls").style.display = "none";
+  document.getElementById("subcategoryButtons").style.display = "none";
+  document.getElementById("productGrid").style.display = "none";
+  
   const categoryGrid = document.getElementById("categoryGrid");
+  categoryGrid.style.display = "grid";
 
-  const categories = allProducts.map((item) => ({
-    category: item.category,
-    image: item.image,
-    description: item.description
-  }));
+  document.getElementById("browsingEyebrow").innerText = "Curated collections";
+  document.getElementById("browsingTitle").innerText = "Shop by aesthetic room essentials";
 
-  const uniqueCategories = categories.filter(
-    (item, index, self) =>
-      index ===
-      self.findIndex((c) => c.category === item.category)
-  );
-
-  categoryGrid.innerHTML = uniqueCategories
-    .map(
-      (category) => `
-      <article class="product-card category-card">
-
-        <img
-          src="${category.image || fallbackImage}"
-          alt="${category.category}"
-          class="product-image"
-          loading="lazy"
-        >
-
-        <div class="product-copy">
-
-          <p class="category">
-            Maison Élise
-          </p>
-
-          <h3>
-            ${category.category}
-          </h3>
-
-          <p>
-            ${category.description}
-          </p>
-
-          <button
-            class="link-btn"
-            onclick="selectCategory('${category.category}')"
-          >
-            Explore Collection
-          </button>
-
-        </div>
-
-      </article>
-    `
-    )
-    .join("");
-
-  document.getElementById("productGrid").innerHTML = "";
-  document.getElementById("subcategoryButtons").innerHTML = "";
-  document.getElementById("productHeading").innerHTML = "";
-  document.getElementById("activeFilters").innerHTML = "";
+  categoryGrid.innerHTML = mainCategories.map(cat => `
+    <div class="category-card" onclick="selectCategory('${cat.name}')">
+      <img src="${cat.image}" alt="${cat.name}" loading="lazy" onerror="this.src='${fallbackImage}';">
+      <div class="category-overlay">
+        <h3>${cat.name}</h3>
+      </div>
+    </div>
+  `).join("");
 }
 
 function selectCategory(categoryName) {
-  selectedCategory = categoryName;
-  selectedSubcategory = null;
+  currentCategory = categoryName;
+  currentSubcategory = "All";
+  
+  // Clean inputs
+  document.getElementById("searchInput").value = "";
+  
+  // Shift Views
+  document.getElementById("categoryGrid").style.display = "none";
+  document.getElementById("backNavContainer").style.display = "block";
+  document.getElementById("storeControls").style.display = "flex";
+  
+  const subBox = document.getElementById("subcategoryButtons");
+  subBox.style.display = "flex";
 
-  const categoryProducts = allProducts.filter(
-    (item) => item.category === categoryName
-  );
+  document.getElementById("browsingEyebrow").innerText = `Collection • ${categoryName}`;
+  document.getElementById("browsingTitle").innerText = `Explore our curated selection`;
 
-  const subcategories = [
-    ...new Set(categoryProducts.map((item) => item.subcategory))
-  ];
+  // Extrapolate list of structural Subcategories present in data
+  const categoryProducts = allProducts.filter(p => p.category === categoryName);
+  const distinctSubs = [...new Set(categoryProducts.map(p => p.subcategory))];
 
-  document.getElementById("productHeading").textContent =
-    categoryName;
-
-  document.getElementById("subcategoryButtons").innerHTML =
-    `
-      <button
-        class="active"
-        onclick="showAllCollections()"
-      >
-        All Collections
-      </button>
-    ` +
-    subcategories
-      .map(
-        (sub) => `
-      <button
-        onclick="selectSubcategory('${sub}')"
-      >
-        ${sub}
-      </button>
-    `
-      )
-      .join("");
-
-  showAllCollections();
-}
-
-function showAllCollections() {
-  const collections = allProducts.filter(
-    (item) => item.category === selectedCategory
-  );
-
-  currentCollections = collections;
-
-  document.getElementById("activeFilters").innerHTML = `
-    <span>${selectedCategory}</span>
+  subBox.innerHTML = `
+    <button class="sub-btn active" id="subBtn-All" onclick="selectSubcategory('All')">All ${categoryName}</button>
+    ${distinctSubs.map(sub => `
+      <button class="sub-btn" id="subBtn-${sub.replace(/\s+/g, '')}" onclick="selectSubcategory('${sub}')">${sub}</button>
+    `).join("")}
   `;
 
-  displayCollections(collections);
+  renderStorefrontItems();
+  
+  // Jump content directly into visual frame view cleanly
+  document.getElementById("collections").scrollIntoView({ behavior: "smooth" });
 }
 
-function selectSubcategory(subcategory) {
-  selectedSubcategory = subcategory;
+function selectSubcategory(subName) {
+  currentSubcategory = subName;
+  
+  // Toggle button styling classes
+  document.querySelectorAll(".sub-btn").forEach(btn => btn.classList.remove("active"));
+  if(subName === "All") {
+    document.getElementById("subBtn-All").classList.add("active");
+  } else {
+    const activeBtn = document.getElementById(`subBtn-${subName.replace(/\s+/g, '')}`);
+    if(activeBtn) activeBtn.classList.add("active");
+  }
 
-  const collections = allProducts.filter(
-    (item) =>
-      item.category === selectedCategory &&
-      item.subcategory === subcategory
-  );
-
-  currentCollections = collections;
-
-  document.getElementById("activeFilters").innerHTML = `
-    <span>${selectedCategory}</span>
-    <span>${subcategory}</span>
-  `;
-
-  displayCollections(collections);
+  handleSearchAndSort();
 }
 
-function displayCollections(collections) {
-  const grid = document.getElementById("productGrid");
+function handleSearchAndSort() {
+  renderStorefrontItems();
+}
 
-  if (!collections.length) {
-    grid.innerHTML =
-      "<p>No collections found.</p>";
+function renderStorefrontItems() {
+  const productGrid = document.getElementById("productGrid");
+  productGrid.style.display = "grid";
+
+  // Phase 1: Structural Categorization Layer
+  let targetedItems = allProducts.filter(p => p.category === currentCategory);
+
+  // Phase 2: Subcategory Context Filtering
+  if (currentSubcategory !== "All") {
+    targetedItems = targetedItems.filter(p => p.subcategory === currentSubcategory);
+  }
+
+  // Phase 3: Text Search Parsing
+  const searchQuery = document.getElementById("searchInput").value.trim().toLowerCase();
+  if (searchQuery) {
+    targetedItems = targetedItems.filter(p => 
+      p.name.toLowerCase().includes(searchQuery) || 
+      p.description.toLowerCase().includes(searchQuery)
+    );
+  }
+
+  // Phase 4: Sorting Order Engine Selection
+  const sortingMethod = document.getElementById("sortSelect").value;
+  if (sortingMethod === "az") {
+    targetedItems.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortingMethod === "za") {
+    targetedItems.sort((a, b) => b.name.localeCompare(a.name));
+  }
+
+  // Phase 5: Display Render Generation Pipeline
+  if (!targetedItems.length) {
+    productGrid.innerHTML = `<div class="empty-notice"><p>No items match your specific query in this department yet.</p></div>`;
     return;
   }
 
-  grid.innerHTML = collections
-    .map(
-      (collection, index) => `
-      <article class="product-card">
-
+  productGrid.innerHTML = targetedItems.map(product => `
+    <article class="product-card">
+      <div class="product-image-container">
         <img
-          src="${collection.image || fallbackImage}"
-          alt="${collection.name}"
-          class="product-image"
-          loading="lazy"
-        >
-
-        <div class="product-copy">
-
-          <p class="category">
-            ${collection.subcategory}
-          </p>
-
-          <h3>
-            ${collection.name}
-          </h3>
-
-          <p>
-            ${collection.description}
-          </p>
-
-          <button
-            class="link-btn"
-            onclick="openCollection(${index})"
-          >
-            View Collection
-          </button>
-
-        </div>
-
-      </article>
-    `
-    )
-    .join("");
-}
-
-function openCollection(index) {
-  const collection = currentCollections[index];
-
-  const grid = document.getElementById("productGrid");
-
-  document.getElementById("productHeading").textContent =
-    collection.name;
-
-  grid.innerHTML = `
-    <div class="collection-detail">
-
-      <button
-        class="link-btn"
-        onclick="${
-          selectedSubcategory
-            ? `selectSubcategory('${selectedSubcategory}')`
-            : `showAllCollections()`
-        }"
-      >
-        ← Back
-      </button>
-
-      <h2>
-        ${collection.name}
-      </h2>
-
-      <p>
-        ${collection.description}
-      </p>
-
-    </div>
-
-    ${collection.products
-      .map(
-        (product) => `
-      <article class="product-card">
-
-        <img
-          src="${product.image || fallbackImage}"
+          src="${product.image && product.image.trim() !== '' ? product.image : fallbackImage}"
           alt="${product.name}"
           class="product-image"
           loading="lazy"
-        >
-
-        <div class="product-copy">
-
-          <p class="category">
-            Curated Pick
-          </p>
-
-          <h3>
-            ${product.name}
-          </h3>
-
-          <a
-            href="${product.link}"
-            target="_blank"
-            rel="noopener noreferrer sponsored"
-            class="link-btn"
-          >
-            Shop Now
-          </a>
-
-        </div>
-
-      </article>
-    `
-      )
-      .join("")}
-  `;
+          onerror="this.onerror=null; this.src='${fallbackImage}';"
+        />
+      </div>
+      <div class="product-copy">
+        <p class="category">Maison Élise • ${product.subcategory}</p>
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <a
+          href="${product.link}"
+          target="_blank"
+          rel="sponsored noopener noreferrer"
+          class="link-btn">
+          View on Amazon
+        </a>
+      </div>
+    </article>
+  `).join("");
 }
 
-loadProducts();
-```
+function scrollToCollections(e) {
+  e.preventDefault();
+  document.getElementById("collections").scrollIntoView({ behavior: "smooth" });
+}
+
+// Global initialization call on window execution
+window.addEventListener("DOMContentLoaded", loadProducts);
