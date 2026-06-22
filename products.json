@@ -1,162 +1,339 @@
 [
   {
-    "name": "Pastel Cotton Bedsheet Set",
-    "category": "Bedding",
-    "subcategory": "Pastel Bedsheets",
-    "description": "Soft pastel bedsheets for calm and aesthetic bedrooms.",
-    "image": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=pastel+bedsheet"
+    "name": "Beddings",
+    "category": "Beddings",
+    "description": "Luxury bedsheets, bedding sets and soft bedroom essentials.",
+    "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
+    "subcategories": [
+      {
+        "name": "Pastel Bedsheets",
+        "description": "Soft pastel coloured bedsheets.",
+        "image": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Pastel Pink Bedsheet",
+            "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=pastel+pink+bedsheet"
+          },
+          {
+            "name": "Pastel Blue Bedsheet",
+            "image": "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=pastel+blue+bedsheet"
+          },
+          {
+            "name": "Pastel Green Bedsheet",
+            "image": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=pastel+green+bedsheet"
+          }
+        ]
+      },
+      {
+        "name": "Floral Bedsheets",
+        "description": "Elegant floral printed bedding.",
+        "image": "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Pink Floral Bedsheet",
+            "image": "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=pink+floral+bedsheet"
+          },
+          {
+            "name": "Rose Print Bedsheet",
+            "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=rose+print+bedsheet"
+          }
+        ]
+      },
+      {
+        "name": "Dark Bedsheets",
+        "description": "Bold luxury bedding collections.",
+        "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Black Bedsheet",
+            "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=black+bedsheet"
+          },
+          {
+            "name": "Navy Blue Bedsheet",
+            "image": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=navy+blue+bedsheet"
+          }
+        ]
+      }
+    ]
   },
+
   {
-    "name": "Minimal Solid Bedsheet",
-    "category": "Bedding",
-    "subcategory": "Solid Bedsheets",
-    "description": "Elegant solid-tone bedding for modern European interiors.",
-    "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=solid+bedsheet"
+    "name": "Coffee Tables",
+    "category": "Coffee Tables",
+    "description": "Statement coffee tables for elegant living spaces.",
+    "image": "https://images.unsplash.com/photo-1532372320572-cda25653a694?auto=format&fit=crop&w=1200&q=80",
+    "subcategories": [
+      {
+        "name": "Modern Coffee Tables",
+        "description": "Minimal and contemporary designs.",
+        "image": "https://images.unsplash.com/photo-1532372320572-cda25653a694?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Minimal Coffee Table",
+            "image": "https://images.unsplash.com/photo-1532372320572-cda25653a694?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=coffee+table"
+          }
+        ]
+      }
+    ]
   },
+
   {
-    "name": "Luxury Floral Bedding",
-    "category": "Bedding",
-    "subcategory": "Floral Bedsheets",
-    "description": "Romantic floral bedding with feminine European charm.",
-    "image": "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=floral+bedsheet"
+    "name": "Lamps",
+    "category": "Lamps",
+    "description": "Warm ambient lighting collections.",
+    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1200&q=80",
+    "subcategories": [
+      {
+        "name": "Table Lamps",
+        "description": "Elegant bedside and living room lamps.",
+        "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Luxury Table Lamp",
+            "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=table+lamp"
+          }
+        ]
+      }
+    ]
   },
+
   {
-    "name": "Cloud Comfort Mattress",
-    "category": "Bedding",
-    "subcategory": "Mattresses",
-    "description": "Comfortable mattress for soft and restful sleep.",
-    "image": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=orthopedic+mattress"
+    "name": "Mattresses",
+    "category": "Mattresses",
+    "description": "Comfort-focused mattress collections.",
+    "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
+    "subcategories": [
+      {
+        "name": "Orthopedic Mattresses",
+        "description": "Premium sleep support.",
+        "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Orthopedic Mattress",
+            "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=orthopedic+mattress"
+          }
+        ]
+      }
+    ]
   },
+
   {
-    "name": "Parisian Sheer Curtains",
-    "category": "Curtains & Rugs",
-    "subcategory": "Sheer Curtains",
-    "description": "Light airy curtains for dreamy interiors.",
-    "image": "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=sheer+curtains"
+    "name": "Floor Rugs",
+    "category": "Floor Rugs",
+    "description": "Soft rugs and floor decor.",
+    "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+    "subcategories": [
+      {
+        "name": "Persian Rugs",
+        "description": "Classic luxury rugs.",
+        "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Persian Rug",
+            "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=persian+rug"
+          }
+        ]
+      }
+    ]
   },
+
   {
-    "name": "Elegant Blackout Curtains",
-    "category": "Curtains & Rugs",
-    "subcategory": "Blackout Curtains",
-    "description": "Luxury blackout curtains with rich fabric texture.",
-    "image": "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=blackout+curtains"
+    "name": "Sofa Sets",
+    "category": "Sofa Sets",
+    "description": "Luxury sofas for living rooms.",
+    "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=80",
+    "subcategories": [
+      {
+        "name": "Luxury Sofas",
+        "description": "Premium comfort seating.",
+        "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Luxury Sofa Set",
+            "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=luxury+sofa+set"
+          }
+        ]
+      }
+    ]
   },
+
   {
-    "name": "Neutral Area Rug",
-    "category": "Curtains & Rugs",
-    "subcategory": "Area Rugs",
-    "description": "Soft textured rugs for cozy bedroom and living spaces.",
-    "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=area+rug"
+    "name": "Recliners",
+    "category": "Recliners",
+    "description": "Comfortable recliner seating.",
+    "image": "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=1200&q=80",
+    "subcategories": [
+      {
+        "name": "Luxury Recliners",
+        "description": "Relax in style.",
+        "image": "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Luxury Recliner Chair",
+            "image": "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=recliner+chair"
+          }
+        ]
+      }
+    ]
   },
+
   {
-    "name": "Warm Glow Table Lamp",
-    "category": "Lighting",
-    "subcategory": "Table Lamps",
-    "description": "Warm ambient lighting for soft luxury homes.",
-    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=table+lamp"
+    "name": "Vase Collections",
+    "category": "Vase Collections",
+    "description": "Decorative vases and floral accents.",
+    "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80",
+    "subcategories": [
+      {
+        "name": "Ceramic Vases",
+        "description": "Elegant ceramic decor.",
+        "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Ceramic Vase",
+            "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=ceramic+vase"
+          }
+        ]
+      }
+    ]
   },
+
   {
-    "name": "Modern Floor Lamp",
-    "category": "Lighting",
-    "subcategory": "Floor Lamps",
-    "description": "Elegant standing lamp for sophisticated interiors.",
-    "image": "https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=floor+lamp"
+    "name": "String Lights",
+    "category": "String Lights",
+    "description": "Warm fairy light collections.",
+    "image": "https://images.unsplash.com/photo-1517991104123-1d56a6e81ed9?auto=format&fit=crop&w=1200&q=80",
+    "subcategories": [
+      {
+        "name": "Fairy Lights",
+        "description": "Ambient decorative lighting.",
+        "image": "https://images.unsplash.com/photo-1517991104123-1d56a6e81ed9?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Warm Fairy Lights",
+            "image": "https://images.unsplash.com/photo-1517991104123-1d56a6e81ed9?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=fairy+lights"
+          }
+        ]
+      }
+    ]
   },
+
   {
-    "name": "Fairy String Lights",
-    "category": "Lighting",
-    "subcategory": "Fairy Lights",
-    "description": "Pinterest-style cozy lighting for bedrooms and balconies.",
-    "image": "https://images.unsplash.com/photo-1517991104123-1d56a6e81ed9?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=fairy+lights"
+    "name": "Wallpapers",
+    "category": "Wallpapers",
+    "description": "Designer wall coverings.",
+    "image": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+    "subcategories": [
+      {
+        "name": "Floral Wallpapers",
+        "description": "Beautiful wall decor.",
+        "image": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Luxury Floral Wallpaper",
+            "image": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=wallpaper"
+          }
+        ]
+      }
+    ]
   },
+
   {
-    "name": "Minimal Ceramic Vase",
-    "category": "Table Decor",
-    "subcategory": "Vases",
-    "description": "Timeless vase for modern neutral interiors.",
-    "image": "https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=ceramic+vase"
+    "name": "Mirrors",
+    "category": "Mirrors",
+    "description": "Statement mirrors for luxury interiors.",
+    "image": "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1200&q=80",
+    "subcategories": [
+      {
+        "name": "Decor Mirrors",
+        "description": "Modern and classic mirrors.",
+        "image": "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Luxury Wall Mirror",
+            "image": "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=wall+mirror"
+          }
+        ]
+      }
+    ]
   },
+
   {
-    "name": "Luxury Candle Set",
-    "category": "Table Decor",
-    "subcategory": "Candles",
-    "description": "Elegant scented candles for cozy soft-luxury rooms.",
-    "image": "https://images.unsplash.com/photo-1602872029708-84d970d3389a?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=luxury+candles"
+    "name": "Wall Arts",
+    "category": "Wall Arts",
+    "description": "Framed art and wall decor.",
+    "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80",
+    "subcategories": [
+      {
+        "name": "Canvas Art",
+        "description": "Luxury wall artwork.",
+        "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Canvas Wall Art",
+            "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=wall+art"
+          }
+        ]
+      }
+    ]
   },
+
   {
-    "name": "Decorative Wall Mirror",
-    "category": "Wall Decor",
-    "subcategory": "Mirrors",
-    "description": "Aesthetic wall mirror that brightens interiors beautifully.",
-    "image": "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=decorative+wall+mirror"
+    "name": "Lounge Chairs",
+    "category": "Lounge Chairs",
+    "description": "Designer accent seating.",
+    "image": "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=1200&q=80",
+    "subcategories": [
+      {
+        "name": "Accent Chairs",
+        "description": "Elegant lounge seating.",
+        "image": "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Accent Lounge Chair",
+            "image": "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=accent+chair"
+          }
+        ]
+      }
+    ]
   },
+
   {
-    "name": "Peel & Stick Wallpaper",
-    "category": "Wall Decor",
-    "subcategory": "Wallpapers",
-    "description": "Easy wallpaper upgrades for elegant interiors.",
-    "image": "https://images.unsplash.com/photo-1615529162924-f8605388461d?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=peel+and+stick+wallpaper"
-  },
-  {
-    "name": "Elegant Wall Art Set",
-    "category": "Wall Decor",
-    "subcategory": "Wall Art",
-    "description": "Soft neutral artwork for Pinterest-worthy walls.",
-    "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=wall+art+frames"
-  },
-  {
-    "name": "Luxury Sofa Set",
-    "category": "Furniture",
-    "subcategory": "Sofas",
-    "description": "Comfortable sofa set for refined living rooms.",
-    "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=luxury+sofa+set"
-  },
-  {
-    "name": "Modern Coffee Table",
-    "category": "Furniture",
-    "subcategory": "Coffee Tables",
-    "description": "Elegant centerpiece for aesthetic living rooms.",
-    "image": "https://images.unsplash.com/photo-1532372320572-cda25653a694?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=coffee+table"
-  },
-  {
-    "name": "Accent Lounge Chair",
-    "category": "Furniture",
-    "subcategory": "Accent Chairs",
-    "description": "Beautiful statement chair for cozy corners.",
-    "image": "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=accent+chair"
-  },
-  {
-    "name": "Elegant Krishna Idol",
+    "name": "Spiritual Decor",
     "category": "Spiritual Decor",
-    "subcategory": "God Idols",
-    "description": "Graceful decor idol for peaceful spiritual corners.",
-    "image": "https://images.unsplash.com/photo-1601212660297-70f8e0a728dd?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=krishna+idol+home+decor"
-  },
-  {
-    "name": "Decorative Brass Diya",
-    "category": "Spiritual Decor",
-    "subcategory": "Diyas",
-    "description": "Traditional diya with elegant decorative appeal.",
-    "image": "https://images.unsplash.com/photo-1607082349566-187342175e2f?auto=format&fit=crop&w=900&q=80",
-    "link": "https://www.amazon.in/s?k=brass+diya"
+    "description": "Peaceful spiritual and meditation decor.",
+    "image": "https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=1200&q=80",
+    "subcategories": [
+      {
+        "name": "Meditation Decor",
+        "description": "Spiritual decorative pieces.",
+        "image": "https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=1200&q=80",
+        "products": [
+          {
+            "name": "Meditation Statue",
+            "image": "https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=900&q=80",
+            "link": "https://www.amazon.in/s?k=spiritual+decor"
+          }
+        ]
+      }
+    ]
   }
 ]
